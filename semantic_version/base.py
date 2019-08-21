@@ -213,6 +213,7 @@ class Version(object):
         # if _has_leading_zero(patch):
         #     raise ValueError("Invalid leading zero in patch: %r" % version_string)
 
+        major.replace("v", "", 1)
         major = int(major)
         minor = cls._coerce(minor, partial)
         patch = cls._coerce(patch, partial)
