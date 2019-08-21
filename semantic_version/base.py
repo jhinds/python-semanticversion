@@ -70,8 +70,8 @@ def identifier_list_cmp(a, b):
 
 class Version(object):
 
-    version_re = re.compile(r'^(\d+)\.(\d+)\.(\d+)(?:-([0-9a-zA-Z.-]+))?(?:\+([0-9a-zA-Z.-]+))?$')
-    partial_version_re = re.compile(r'^(\d+)(?:\.(\d+)(?:\.(\d+))?)?(?:-([0-9a-zA-Z.-]*))?(?:\+([0-9a-zA-Z.-]*))?$')
+    version_re = re.compile(r'^v?(\d+)\.(\d+)\.(\d+)(?:-([0-9a-zA-Z.-]+))?(?:\+([0-9a-zA-Z.-]+))?$')
+    partial_version_re = re.compile(r'^v?(\d+)(?:\.(\d+)(?:\.(\d+))?)?(?:-([0-9a-zA-Z.-]*))?(?:\+([0-9a-zA-Z.-]*))?$')
 
     def __init__(self, version_string, partial=False):
         major, minor, patch, prerelease, build = self.parse(version_string, partial)
@@ -206,12 +206,12 @@ class Version(object):
 
         major, minor, patch, prerelease, build = match.groups()
 
-        if _has_leading_zero(major):
-            raise ValueError("Invalid leading zero in major: %r" % version_string)
-        if _has_leading_zero(minor):
-            raise ValueError("Invalid leading zero in minor: %r" % version_string)
-        if _has_leading_zero(patch):
-            raise ValueError("Invalid leading zero in patch: %r" % version_string)
+        # if _has_leading_zero(major):
+        #     raise ValueError("Invalid leading zero in major: %r" % version_string)
+        # if _has_leading_zero(minor):
+        #     raise ValueError("Invalid leading zero in minor: %r" % version_string)
+        # if _has_leading_zero(patch):
+        #     raise ValueError("Invalid leading zero in patch: %r" % version_string)
 
         major = int(major)
         minor = cls._coerce(minor, partial)
